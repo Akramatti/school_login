@@ -21,7 +21,7 @@ body {
 
 
 form {
-    height: 520px;
+    height: 600px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -67,6 +67,7 @@ input {
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
+    margin-bottom: 20px;
 }
 
 #signIn {
