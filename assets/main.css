@@ -1,3 +1,4 @@
+
 *,
 *:before,
 *:after {
@@ -5,51 +6,39 @@
     margin: 0;
     box-sizing: border-box;
 }
-
 body {
     background-color: #080710;
+    justify-content: center;
 }
 
-
-
-
-form {
-    height: 600px;
+#container {
+    display: flex;
+    flex-direction: row;
+    height: auto;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
+    justify-content: center;
 }
-
-form * {
+body * {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
-    outline: none;
-    border: none;
 }
-
+form{
+    width: 350px;
+    margin-right: 20px;
+}
 form h3 {
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;
     text-align: center;
 }
-
-label {
-    display: block;
-    margin-top: 30px;
-    font-size: 16px;
-    font-weight: 500;
-}
-
 input {
     display: block;
     height: 50px;
@@ -61,9 +50,16 @@ input {
     font-size: 14px;
     font-weight: 300;
     margin-bottom: 20px;
+    outline: none;
+    border: none;
 }
-
-#signIn {
+label {
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+#signIn{
     margin-top: 50px;
     width: 100%;
     background-color: #ffffff;
@@ -75,11 +71,8 @@ input {
     cursor: pointer;
 }
 #voti {
-    height: 70px;
+    height: 300px;
     width: 300px;
-    background-color: rgba(255, 255, 255, 0.13);
-  }
-  #container {
-    display: flex;
-    justify-content: space-between;  
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.14);
   }
