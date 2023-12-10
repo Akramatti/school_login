@@ -75,11 +75,40 @@ label {
     cursor: pointer;
 }
 #voti {
-    height: 300px;
-    width: 300px;
+    height: auto;
+    width: auto;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.14);
     float: left;
     min-width: 200px;
     margin: 30px;
+  }
+  #grades{
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
+    width: fit-content; /* Adaptable width based on content */
+    height: fit-content; /* Adaptable height based on content */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+
+  }
+  #mathValue{
+    background-color: rgba(255, 255, 255, 0.096);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
+    width: fit-content; /* Adaptable width based on content */
+    height: fit-content; /* Adaptable height based on content */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+  }
+
+  #csValue{
+    background-color: rgba(255, 255, 255, 0.096);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
+    width: fit-content; /* Adaptable width based on content */
+    height: fit-content; /* Adaptable height based on content */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
   }

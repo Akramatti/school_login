@@ -76,6 +76,21 @@ function exportUsers() {
 }
 
 
+function printVotesMath() {
+    const mathDiv = document.getElementById('mathChronology');
+    for (const user in window.users) {
+        const mathVoti = window.users[user].lessons.math;
+        mathDiv.innerHTML += `<p> ${mathVoti.join(', ')}</p>`;
+    }
+}
+function printVotesCs() {
+    const csDiv = document.getElementById('csChronology');
+    for (const user in window.users) {
+        const csVoti = window.users[user].lessons.cs;
+        csDiv.innerHTML += `<p> ${csVoti.join('; ')}</p>`;
+    }
+}
+
 $(document).ready(function () {
 
     // import/export
@@ -89,5 +104,8 @@ $(document).ready(function () {
     $('#saveInformatics').click(addNewGrade('cs'));
 
     averageTotal()
+
+    printVotesMath()
+    printVotesCs()
 });
 
