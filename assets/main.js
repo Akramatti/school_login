@@ -39,7 +39,7 @@ function averageGrades(lesson) {
             sum += window.users[user].lessons[lesson][indexGrade]
         }
         const sumAverage = sum / window.users[user].lessons[lesson].length || 0
-        $(`#${lesson}Label`).html(`${lesson}<br>avr grade: ${sumAverage}`)
+        $(`#${lesson}Value`).html(`${lesson}<br>avr grade: ${sumAverage}`)
         return sumAverage
     }
 
