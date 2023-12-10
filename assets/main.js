@@ -18,9 +18,16 @@ function authentication() {
 }
 
 function logout() {
-    const user = Object.keys(Cookies.get())[0].toString()
-    Cookies.remove(user)
+    Cookies.remove(getCurrentUser())
     window.location.href = 'login.html'
+}
+
+function getCurrentUser() {
+    const cookieKeys = Object.keys(Cookies.get())
+    // If cookie array is not empty
+    if (cookieKeys.length) {
+        return cookieKeys[0].toString()
+    }
 }
 
 
@@ -31,7 +38,7 @@ function averageTotal() {
 }
 
 function averageGrades(lesson) {
-    const user = Object.keys(Cookies.get())[0].toString()
+    const user = getCurrentUser()
 
     function averageGradesInner() {
         let sum = 0
@@ -47,7 +54,7 @@ function averageGrades(lesson) {
 }
 
 function addNewGrade(lesson) {
-    const user = Object.keys(Cookies.get())[0].toString()
+    const user = getCurrentUser()
     const averageCalculate = averageGrades(lesson)
 
     function addNewGradeInner() {
@@ -56,11 +63,26 @@ function addNewGrade(lesson) {
             window.users[user].lessons[lesson].push(grade)
             averageCalculate()
             averageTotal()
+            printVotes(lesson)
             exportUsers()
         }
     }
 
     return addNewGradeInner
+}
+
+function printVotes(lesson) {
+    const lessonDiv = $(`#${lesson}Chronology`);
+    const lessonGrades = window.users[getCurrentUser()].lessons[lesson];
+    lessonDiv.html(`<p> ${lessonGrades.join('; ')}</p>`)
+}
+
+function removeAllGrades() {
+    window.users[getCurrentUser()].lessons = {cs: [], math: []}
+    exportUsers()
+    averageTotal()
+    printVotes('cs')
+    printVotes('math')
 }
 
 
@@ -75,22 +97,6 @@ function exportUsers() {
     return JSON.parse(localStorage.getItem("users"))
 }
 
-
-function printVotesMath() {
-    const mathDiv = document.getElementById('mathChronology');
-    for (const user in window.users) {
-        const mathVoti = window.users[user].lessons.math;
-        mathDiv.innerHTML += `<p> ${mathVoti.join(', ')}</p>`;
-    }
-}
-function printVotesCs() {
-    const csDiv = document.getElementById('csChronology');
-    for (const user in window.users) {
-        const csVoti = window.users[user].lessons.cs;
-        csDiv.innerHTML += `<p> ${csVoti.join('; ')}</p>`;
-    }
-}
-
 $(document).ready(function () {
 
     // import/export
@@ -100,12 +106,12 @@ $(document).ready(function () {
     $('#signIn').click(authentication);
     $('#logout').click(logout);
 
+    $('#delete').click(removeAllGrades);
     $('#saveMath').click(addNewGrade('math'));
     $('#saveInformatics').click(addNewGrade('cs'));
 
     averageTotal()
-
-    printVotesMath()
-    printVotesCs()
+    printVotes('cs')
+    printVotes('math')
 });
 
