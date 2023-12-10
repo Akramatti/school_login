@@ -20,6 +20,9 @@ function authentication() {
 function logout() {
     const user = Object.keys(Cookies.get())[0].toString()
     Cookies.remove(user)
+    /*const grade = $("#grades");
+    const textnode = grade.nextSibling;
+    textnode.remove()*/
     window.location.href = 'login.html'
 }
 
@@ -87,7 +90,7 @@ function printVotesCs() {
     const csDiv = document.getElementById('csChronology');
     for (const user in window.users) {
         const csVoti = window.users[user].lessons.cs;
-        csDiv.innerHTML += `<p> ${csVoti.join('; ')}</p>`;
+        csDiv.innerHTML += `<p> ${csVoti.join(', ')}</p>`;
     }
 }
 
