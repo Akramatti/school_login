@@ -1,39 +1,7 @@
-// =====================================USERS_STORAGE===================================================================
-
 window.users = {
     SYMBOS: {password: "HalloWelt", lessons: {cs: [], math: []}, name: 'Ihor'},
     ATTOS: {password: "CiaoMondo", lessons: {cs: [], math: []}, name: 'Akram'},
     admin: {password: "admin", lessons: {cs: [], math: []}, name: 'admin'},
-}
-
-
-// =====================================IMPORT/EXPORT===================================================================
-
-function importUsers() {
-    // importing the users form localStorage
-    if (localStorage.getItem("users")) {
-        window.users = JSON.parse(localStorage.getItem("users"))
-    }
-}
-
-function exportUsers() {
-    // exporting the users form localStorage
-    localStorage.setItem("users", JSON.stringify(window.users))
-    return JSON.parse(localStorage.getItem("users"))
-}
-
-
-// =====================================AUTHENTICATION==================================================================
-
-function getCurrentUser() {
-    const cookieKeys = Object.keys(Cookies.get())
-
-    // If cookie array is not empty => return the name of authenticated user => else nothing
-    if (cookieKeys.length) {
-        return cookieKeys[0].toString()
-    }
-
-    return null
 }
 
 function authentication() {
@@ -50,90 +18,106 @@ function authentication() {
 }
 
 function logout() {
-    // Remove cookies of authorized user and replace to login page
-    Cookies.remove(getCurrentUser())
+    const user = Object.keys(Cookies.get())[0].toString()
+    Cookies.remove(user)
     window.location.href = 'login.html'
 }
 
+function getCurrentUser() {
+    const cookieKeys = Object.keys(Cookies.get())
+    // If cookie array is not empty
+    if (cookieKeys.length) {
+        return cookieKeys[0].toString()
+    }
+}
 
-// =====================================GRADES_AVERAGE_FUNCTIONS========================================================
 
-function getAverageGradesOfLesson(lesson) {
-    // The function return the medium of all grades of one lesson
+function averageTotal() {
+    const averageCS = averageGrades('cs')()
+    const averageMath = averageGrades('math')()
+    $("#averageGrades").html(`Total average: ${(averageCS + averageMath) / 2}`)
+}
+
+function averageGrades(lesson) {
     const user = getCurrentUser()
-    const arrayOfLessonsGrades = window.users[user].lessons[lesson]
 
-    if (user && arrayOfLessonsGrades.length) {
-        const sum = arrayOfLessonsGrades.reduce((v, i) => (v + i))
-        return sum / arrayOfLessonsGrades.length
+    function averageGradesInner() {
+        let sum = 0
+        for (let indexGrade in window.users[user].lessons[lesson]) {
+            sum += window.users[user].lessons[lesson][indexGrade]
+        }
+        const sumAverage = sum / window.users[user].lessons[lesson].length || 0
+        $(`#${lesson}Value`).html(`${lesson}<br>avr grade: ${sumAverage}`)
+        return sumAverage
     }
 
-    return 0
+    return averageGradesInner
 }
-
-function getAverageGradesTotal() {
-    // The function return the average of all lessons of the one user
-    const averageCS = getAverageGradesOfLesson('cs')  // Get the average grades of lesson CS = (sum/count)
-    const averageMath = getAverageGradesOfLesson('math')  // Get the average grades of lesson Math = (sum/count)
-    return (averageMath + averageCS) / 2
-}
-
-
-// =====================================DISPLAYING======================================================================
-
-
-function getArrayGratesFormatted(lesson) {
-    // The function formatted array to humanity readable string
-    const arrayOfLessonsGrades = window.users[getCurrentUser()].lessons[lesson];  // Get raw array [1, 5, 2, 10, 9]
-    return `<p> ${arrayOfLessonsGrades.join(', ')}</p>` // Formatting in humanity readable string => "1, 5, 2, 10, 9"
-}
-
-function printVotes(lesson) {
-    // The function update and display only the average of lesson and their array
-    $(`#${lesson}Chronology`).html(getArrayGratesFormatted(lesson))  // The list of grades of one lesson
-    $(`#${lesson}Value`).html(`${lesson}<br>avr grade: ${getAverageGradesOfLesson(lesson)}`)  // The medium value
-}
-
-function displayAllGrades() {
-    // The function update and display the new values in html. do the calculate of avg for each lesson and total avg
-    printVotes('cs')  // Update grades for CS
-    printVotes('math')  // Update grades for Math
-    $("#averageGrades").html(`Total average: ${getAverageGradesTotal()}`) // Update total grades for each lesson
-}
-
-
-// =====================================MANAGEMENT_OF_GRADES============================================================
 
 function addNewGrade(lesson) {
-    // The closure function return the object functionInner and this function add the new value(grade) into array
     const user = getCurrentUser()
+    const averageCalculate = averageGrades(lesson)
 
     function addNewGradeInner() {
-        const grade = parseInt($(`#${lesson}`).val())  // Getting value from input form
-        if (grade) {  // Check if grade != 0 or null or undefined
-            window.users[user].lessons[lesson].push(grade)  // Add a grade to the list of the lesson of our user
-            displayAllGrades()  // Displaying new updates
-            exportUsers()  // Export new updates to localStorage
+        const grade = parseInt($(`#${lesson}`).val())
+        if (grade) {
+            window.users[user].lessons[lesson].push(grade)
+            averageCalculate()
+            averageTotal()
+            printVotes(lesson)
+            exportUsers()
         }
     }
 
     return addNewGradeInner
 }
 
+function printVotes(lesson) {
+    const lessonDiv = $(`#${lesson}Chronology`);
+    const lessonGrades = window.users[getCurrentUser()].lessons[lesson];
+    lessonDiv.html(`<p> ${lessonGrades.join('; ')}</p>`)
+}
+
 function removeAllGrades() {
-    window.users[getCurrentUser()].lessons = {cs: [], math: []}  // Clean her last grades of lessons
-    displayAllGrades()  // displaying new updates
-    exportUsers()  // Export new updates to localStorage
+    window.users[getCurrentUser()].lessons = {cs: [], math: []}
+    exportUsers()
+    averageTotal()
+    printVotes('cs')
+    printVotes('math')
 }
 
 
-// =====================================DOCUMENT_IS_READY===============================================================
+function importUsers() {
+    if (localStorage.getItem("users")) {
+        window.users = JSON.parse(localStorage.getItem("users"))
+    }
+}
 
-$(document).ready(() => {
+function exportUsers() {
+    localStorage.setItem("users", JSON.stringify(window.users))
+    return JSON.parse(localStorage.getItem("users"))
+}
+
+
+function printVotesMath() {
+    const mathDiv = document.getElementById('mathChronology');
+    for (const user in window.users) {
+        const mathVoti = window.users[user].lessons.math;
+        mathDiv.innerHTML += `<p> ${mathVoti.join(', ')}</p>`;
+    }
+}
+function printVotesCs() {
+    const csDiv = document.getElementById('csChronology');
+    for (const user in window.users) {
+        const csVoti = window.users[user].lessons.cs;
+        csDiv.innerHTML += `<p> ${csVoti.join('; ')}</p>`;
+    }
+}
+
+$(document).ready(function () {
 
     // import/export
     importUsers()
-    exportUsers()
 
     // Auth
     $('#signIn').click(authentication);
@@ -143,10 +127,8 @@ $(document).ready(() => {
     $('#saveMath').click(addNewGrade('math'));
     $('#saveInformatics').click(addNewGrade('cs'));
 
-    // Checking if user is already authorized
-    if (getCurrentUser()) {
-        displayAllGrades()
-    }
-
+    averageTotal()
+    printVotes('cs')
+    printVotes('math')
 });
 

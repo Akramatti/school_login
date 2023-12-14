@@ -12,9 +12,11 @@
     <link href="./assets/main.css" rel="stylesheet">
 
     <script lang="js">
-        const user = getCurrentUser()
-        if (user in window.users) {
-            window.location.href = 'user.html'
+        const cookie = Cookies.get()
+        for (let key in window.users) {
+            if (key in cookie) {
+                window.location.href = 'user.html'
+            }
         }
     </script>
 
