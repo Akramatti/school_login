@@ -100,6 +100,11 @@ function displayAllGrades() {
     printVotes('math')  // Update grades for Math
     $("#averageGrades").html(`Total average: ${getAverageGradesTotal()}`) // Update total grades for each lesson
 }
+// Stampa la variabile nel div con l'ID "userName" utilizzando jQuery
+$(document).ready(function(){
+    const name = getCurrentUser();
+    $("#userName").text(name);
+});
 
 
 // =====================================MANAGEMENT_OF_GRADES============================================================

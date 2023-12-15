@@ -116,3 +116,28 @@ label {
     margin: 10px;
     min-width: 350px;
   }
+  #math,#cs,#username,#password{
+    width: 330px;;
+  }
+  #userName{
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
+    width: 100%; /* Adaptable width based on content */
+    height: fit-content; /* Adaptable height based on content */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    max-width: 400px;
+
+  }
+  #avrgGrade{
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
+    width: 100%; /* Adaptable width based on content */
+    height: fit-content; /* Adaptable height based on content */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    max-width: 400px;
+
+  }
