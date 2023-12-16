@@ -100,7 +100,6 @@ function displayAllGrades() {
     printVotes('math')  // Update grades for Math
     $("#averageGrades").html(`Total average: ${getAverageGradesTotal()}`) // Update total grades for each lesson
 }
-// Stampa la variabile nel div con l'ID "userName" utilizzando jQuery
 
 
 // =====================================MANAGEMENT_OF_GRADES============================================================
@@ -111,10 +110,12 @@ function addNewGrade(lesson) {
 
     function addNewGradeInner() {
         const grade = parseInt($(`#${lesson}`).val())  // Getting value from input form
-        if (grade) {  // Check if grade != 0 or null or undefined
+        if (grade && grade <= 10 && grade > 1) {  // Check if grade != 0 or null or undefined
             window.users[user].lessons[lesson].push(grade)  // Add a grade to the list of the lesson of our user
             displayAllGrades()  // Displaying new updates
             exportUsers()  // Export new updates to localStorage
+        } else {
+            alert(`Your grade is not available. ${grade} should be more 1 and equal or less 10`)
         }
     }
 
