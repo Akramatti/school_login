@@ -20,38 +20,39 @@
 
 </head>
 <body>
-    <div id="container">
-<form>
-    <input type="button" id="logout" value="Logout">
+<div id="container">
+    <form>
+        <input type="button" id="logout" value="Logout">
 
-    
+        <label for="math" id="mathLabel"></label>
+        <input type="number" name="matematica" id="math" max="10" min="1">
+        <input type="button" value="save" id="saveMath">
 
-    <label for="math" id="mathLabel"></label>
-    <input type="number" name="matematica" id="math" max="10" min="1">
-    <input type="button" value="save" id="saveMath">
+        <label for="cs" id="csLabel"></label>
+        <input type="number" name="informatica" id="cs" max="10" min="1">
+        <input type="button" value="save" id="saveInformatics">
 
-    <label for="cs" id="csLabel"></label>
-    <input type="number" name="informatica" id="cs" max="10" min="1">
-    <input type="button" value="save" id="saveInformatics">
-
-    <label for="delete"></label>
-    <input type="button" value="delete" id="delete">
-</form>
+        <label for="delete"></label>
+        <input type="button" value="delete" id="delete">
+    </form>
 </div>
 
 <div id="voti">
     <div id="userName"></div>
-<div id="avrgGrade">
-    <div class="progress" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar text-bg-success" style="width: 75%">75%</div>
-      </div>
-    <label id="averageGrades"></label>
-</div>
+
+    <div id="avrgGrade">
+        <div class="progress" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar text-bg-success" style="width: 75%">55%</div>
+        </div>
+        <label id="averageGrades"></label>
+    </div>
+
     <div id="grades">
         <div id="mathValue"></div>
         <h2>voti:</h2>
         <div id="mathChronology"></div>
     </div>
+
     <div id="grades">
         <div id="csValue"></div>
         <h2>voti:</h2>

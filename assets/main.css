@@ -4,9 +4,8 @@
 *:after {
     padding: 0;
     margin: 0;
-    
-    
 }
+
 body {
     background-color: #e31e1e;
     justify-content: center;
@@ -26,23 +25,27 @@ body {
     padding: 50px 35px;
     justify-content: center;
 }
+
 body * {
-    
+
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
-    
+
 }
-form{
+
+form {
     width: 350px;
     margin-right: 20px;
 }
+
 form h3 {
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;
     text-align: center;
 }
+
 input {
     display: block;
     height: 50px;
@@ -57,14 +60,16 @@ input {
     outline: none;
     border: none;
 }
+
 label {
     display: block;
     margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
-    
+
 }
-#signIn{
+
+#signIn {
     margin-top: 50px;
     width: 100%;
     background-color: #ffffff;
@@ -75,6 +80,7 @@ label {
     border-radius: 5px;
     cursor: pointer;
 }
+
 #voti {
     height: auto;
     width: auto;
@@ -84,9 +90,10 @@ label {
     min-width: 460px;
     margin: 30px;
     color: #080710;
-    
-  }
-  #grades{
+
+}
+
+#grades {
     background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
     width: fit-content; /* Adaptable width based on content */
@@ -95,16 +102,19 @@ label {
     border-radius: 10px;
     margin: 10px;
     max-width: 400px;
-    
 
-  }
-  p{
+
+}
+
+p {
     color: #080710;
-  }
-  h2{
+}
+
+h2 {
     color: #080710;
-  }
-  #mathValue{
+}
+
+#mathValue {
     background-color: rgba(255, 255, 255, 0.096);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
     width: auto; /* Adaptable width based on content */
@@ -114,9 +124,9 @@ label {
     margin: 10px;
     min-width: 350px;
     color: #080710;
-  }
+}
 
-  #csValue{
+#csValue {
     background-color: rgba(255, 255, 255, 0.096);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
     width: auto; /* Adaptable width based on content */
@@ -126,11 +136,13 @@ label {
     margin: 10px;
     min-width: 350px;
     color: #080710;
-  }
-  #math,#cs,#username,#password{
+}
+
+#math, #cs, #username, #password {
     width: 330px;;
-  }
-  #userName{
+}
+
+#userName {
     background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
     width: 100%; /* Adaptable width based on content */
@@ -141,8 +153,9 @@ label {
     max-width: 400px;
     color: #080710;
 
-  }
-  #avrgGrade{
+}
+
+#avrgGrade {
     background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
     width: 100%; /* Adaptable width based on content */
@@ -153,7 +166,8 @@ label {
     max-width: 400px;
     color: #080710;
 
-  }
-  #averageGrades{
+}
+
+#averageGrades {
     color: #080710;
-  }
+}

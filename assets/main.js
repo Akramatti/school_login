@@ -90,35 +90,43 @@ function getArrayGratesFormatted(lesson) {
 
 function printVotes(lesson) {
     // The function update and display only the average of lesson and their array
+    const value = `${lesson}<br>avr grade: ${parseFloat(getAverageGradesOfLesson(lesson)).toFixed(2)}`
     $(`#${lesson}Chronology`).html(getArrayGratesFormatted(lesson))  // The list of grades of one lesson
-    $(`#${lesson}Value`).html(`${lesson}<br>avr grade: ${getAverageGradesOfLesson(lesson)}`)  // The medium value
+    $(`#${lesson}Value`).html(value)  // The medium value
 }
 
 function displayAllGrades() {
     // The function update and display the new values in html. do the calculate of avg for each lesson and total avg
     printVotes('cs')  // Update grades for CS
     printVotes('math')  // Update grades for Math
-    $("#averageGrades").html(`Total average: ${getAverageGradesTotal()}`) // Update total grades for each lesson
+    updateProgressBar(getAverageGradesTotal())
+
 }
 
 function updateProgressBar(newValue) {
-    var progressBar = $(".progress-bar");
-    
-    // Imposta la larghezza in base al nuovo valore
-    progressBar.css("width", newValue*10 + "%");
-    
+    // Aggiorna il testo interno alla barra di progresso e Imposta la larghezza in base al nuovo valore
+    const progressBar = $(".progress-bar");
+    progressBar.text(parseFloat(newValue).toFixed(2));
+    progressBar.css("width", `${newValue * 10}%`);
+
+    const value = `Total average: ${parseFloat(newValue).toFixed(2)}`
+    $("#averageGrades").html(value) // Update total grades for each lesson
+
+
     // Modifica lo stile in base al valore
     if (newValue < 4) {
-        progressBar.removeClass("text-bg-success text-bg-warning").addClass("text-bg-danger");
+        progressBar.removeClass(progressBar.attr('class'))
+        progressBar.addClass("progress-bar text-bg-danger");
     } else if (newValue < 6) {
-        progressBar.removeClass("text-bg-success text-bg-danger").addClass("text-bg-warning");
+        progressBar.removeClass(progressBar.attr('class'))
+        progressBar.addClass("progress-bar text-bg-warning");
     } else {
-        progressBar.removeClass("text-bg-warning text-bg-danger").addClass("text-bg-success");
+        progressBar.removeClass(progressBar.attr('class'))
+        progressBar.addClass("progress-bar text-bg-success");
     }
-    
-    // Aggiorna il testo interno alla barra di progresso
-    progressBar.text(newValue + "%");
+
 }
+
 // =====================================MANAGEMENT_OF_GRADES============================================================
 
 function addNewGrade(lesson) {
@@ -127,7 +135,7 @@ function addNewGrade(lesson) {
 
     function addNewGradeInner() {
         const grade = parseInt($(`#${lesson}`).val())  // Getting value from input form
-        if (grade && grade <= 10 && grade > 1) {  // Check if grade != 0 or null or undefined
+        if (grade && grade <= 10 && grade >= 1) {  // Check if grade != 0 or null or undefined
             window.users[user].lessons[lesson].push(grade)  // Add a grade to the list of the lesson of our user
             displayAllGrades()  // Displaying new updates
             exportUsers()  // Export new updates to localStorage
@@ -161,7 +169,6 @@ $(document).ready(() => {
     $('#delete').click(removeAllGrades);
     $('#saveMath').click(addNewGrade('math'));
     $('#saveInformatics').click(addNewGrade('cs'));
-    $('#save*').click(updateProgressBar(getAverageGradesTotal()));
 
     // Checking if user is already authorized
     if (getCurrentUser()) {
