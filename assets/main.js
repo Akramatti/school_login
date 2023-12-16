@@ -101,10 +101,6 @@ function displayAllGrades() {
     $("#averageGrades").html(`Total average: ${getAverageGradesTotal()}`) // Update total grades for each lesson
 }
 // Stampa la variabile nel div con l'ID "userName" utilizzando jQuery
-$(document).ready(function(){
-    const name = getCurrentUser();
-    $("#userName").text(name);
-});
 
 
 // =====================================MANAGEMENT_OF_GRADES============================================================
@@ -151,6 +147,7 @@ $(document).ready(() => {
     // Checking if user is already authorized
     if (getCurrentUser()) {
         displayAllGrades()
+        $("#userName").text(getCurrentUser());
     }
 
 });
