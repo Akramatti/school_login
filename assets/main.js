@@ -115,14 +115,11 @@ function updateProgressBar(newValue) {
 
     // Modifica lo stile in base al valore
     if (newValue < 4) {
-        progressBar.removeClass(progressBar.attr('class'))
-        progressBar.addClass("progress-bar text-bg-danger");
+        progressBar.attr('class', "progress-bar text-bg-danger")
     } else if (newValue < 6) {
-        progressBar.removeClass(progressBar.attr('class'))
-        progressBar.addClass("progress-bar text-bg-warning");
+        progressBar.attr('class', "progress-bar text-bg-warning")
     } else {
-        progressBar.removeClass(progressBar.attr('class'))
-        progressBar.addClass("progress-bar text-bg-success");
+        progressBar.attr('class', "progress-bar text-bg-success")
     }
 
 }
