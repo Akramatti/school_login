@@ -101,7 +101,24 @@ function displayAllGrades() {
     $("#averageGrades").html(`Total average: ${getAverageGradesTotal()}`) // Update total grades for each lesson
 }
 
-
+function updateProgressBar(newValue) {
+    var progressBar = $(".progress-bar");
+    
+    // Imposta la larghezza in base al nuovo valore
+    progressBar.css("width", newValue*10 + "%");
+    
+    // Modifica lo stile in base al valore
+    if (newValue < 4) {
+        progressBar.removeClass("text-bg-success text-bg-warning").addClass("text-bg-danger");
+    } else if (newValue < 6) {
+        progressBar.removeClass("text-bg-success text-bg-danger").addClass("text-bg-warning");
+    } else {
+        progressBar.removeClass("text-bg-warning text-bg-danger").addClass("text-bg-success");
+    }
+    
+    // Aggiorna il testo interno alla barra di progresso
+    progressBar.text(newValue + "%");
+}
 // =====================================MANAGEMENT_OF_GRADES============================================================
 
 function addNewGrade(lesson) {
@@ -144,6 +161,7 @@ $(document).ready(() => {
     $('#delete').click(removeAllGrades);
     $('#saveMath').click(addNewGrade('math'));
     $('#saveInformatics').click(addNewGrade('cs'));
+    $('#save*').click(updateProgressBar(getAverageGradesTotal()));
 
     // Checking if user is already authorized
     if (getCurrentUser()) {

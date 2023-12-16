@@ -8,7 +8,7 @@
     
 }
 body {
-    background-color: #080710;
+    background-color: #e31e1e;
     justify-content: center;
     display: flex;
 }
@@ -22,7 +22,7 @@ body {
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    box-shadow: 0 0 40px rgba(35, 15, 25, 0.6);
     padding: 50px 35px;
     justify-content: center;
 }
@@ -62,6 +62,7 @@ label {
     margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
+    
 }
 #signIn{
     margin-top: 50px;
@@ -82,10 +83,11 @@ label {
     float: left;
     min-width: 460px;
     margin: 30px;
+    color: #080710;
     
   }
   #grades{
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
     width: fit-content; /* Adaptable width based on content */
     height: fit-content; /* Adaptable height based on content */
@@ -93,7 +95,14 @@ label {
     border-radius: 10px;
     margin: 10px;
     max-width: 400px;
+    
 
+  }
+  p{
+    color: #080710;
+  }
+  h2{
+    color: #080710;
   }
   #mathValue{
     background-color: rgba(255, 255, 255, 0.096);
@@ -104,6 +113,7 @@ label {
     border-radius: 10px;
     margin: 10px;
     min-width: 350px;
+    color: #080710;
   }
 
   #csValue{
@@ -115,12 +125,13 @@ label {
     border-radius: 10px;
     margin: 10px;
     min-width: 350px;
+    color: #080710;
   }
   #math,#cs,#username,#password{
     width: 330px;;
   }
   #userName{
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
     width: 100%; /* Adaptable width based on content */
     height: fit-content; /* Adaptable height based on content */
@@ -128,10 +139,11 @@ label {
     border-radius: 10px;
     margin: 10px;
     max-width: 400px;
+    color: #080710;
 
   }
   #avrgGrade{
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
     width: 100%; /* Adaptable width based on content */
     height: fit-content; /* Adaptable height based on content */
@@ -139,5 +151,9 @@ label {
     border-radius: 10px;
     margin: 10px;
     max-width: 400px;
+    color: #080710;
 
+  }
+  #averageGrades{
+    color: #080710;
   }
