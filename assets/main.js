@@ -75,7 +75,7 @@ function getAverageGradesTotal() {
     // The function return the average of all lessons of the one user
     const averageCS = getAverageGradesOfLesson('cs')  // Get the average grades of lesson CS = (sum/count)
     const averageMath = getAverageGradesOfLesson('math')  // Get the average grades of lesson Math = (sum/count)
-    return (averageMath + averageCS) / 2
+    return (averageMath !==0 && averageCS !==0) ? (averageMath + averageCS) / 2 : averageMath || averageCS
 }
 
 
@@ -131,11 +131,13 @@ function addNewGrade(lesson) {
     const user = getCurrentUser()
 
     function addNewGradeInner() {
-        const grade = parseInt($(`#${lesson}`).val())  // Getting value from input form
+        const inputField = $(`#${lesson}`)
+        const grade = parseInt(inputField.val())  // Getting value from input form
         if (grade && grade <= 10 && grade >= 1) {  // Check if grade != 0 or null or undefined
             window.users[user].lessons[lesson].push(grade)  // Add a grade to the list of the lesson of our user
             displayAllGrades()  // Displaying new updates
             exportUsers()  // Export new updates to localStorage
+            inputField.val('')
         } else {
             alert(`Your grade is not available. ${grade} should be more 1 and equal or less 10`)
         }
